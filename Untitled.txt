@@ -1,0 +1,2 @@
+Hello World
+A file written with this notepad
