@@ -49,41 +49,42 @@ def pasteFile():
 
 def About():
     showinfo("Notepad", "A Simple Notepad")
+    
+if __name__=="__main__":
+    root = Tk()
 
-root = Tk()
+    root.geometry("900x450")
+    root.title("Untitled - Notepad")
+    root.minsize(400, 150)
+    root.maxsize(1100,800)
 
-root.geometry("900x450")
-root.title("Untitled - Notepad")
-root.minsize(400, 150)
-root.maxsize(1100,800)
+    TextArea = Text(root, font="Arial 16")
+    fileName = None
+    TextArea.pack(expand=True, fill=BOTH)
 
-TextArea = Text(root, font="Arial 16")
-fileName = None
-TextArea.pack(expand=True, fill=BOTH)
+    MenuBar = Menu(root)
 
-MenuBar = Menu(root)
+    FileMenu = Menu(MenuBar, tearoff=0)
 
-FileMenu = Menu(MenuBar, tearoff=0)
+    FileMenu.add_command(label="New", command=newFile)
+    FileMenu.add_command(label="Open", command=openFile)
+    FileMenu.add_command(label="Save", command=saveFile)
 
-FileMenu.add_command(label="New", command=newFile)
-FileMenu.add_command(label="Open", command=openFile)
-FileMenu.add_command(label="Save", command=saveFile)
+    MenuBar.add_cascade(label="File", menu=FileMenu)
 
-MenuBar.add_cascade(label="File", menu=FileMenu)
+    EditMenu = Menu(MenuBar, tearoff=0)
 
-EditMenu = Menu(MenuBar, tearoff=0)
+    EditMenu.add_command(label="Cut", command=cutFile)
+    EditMenu.add_command(label="Copy", command=copyFile)
+    EditMenu.add_command(label="Paste", command=pasteFile)
 
-EditMenu.add_command(label="Cut", command=cutFile)
-EditMenu.add_command(label="Copy", command=copyFile)
-EditMenu.add_command(label="Paste", command=pasteFile)
+    MenuBar.add_cascade(label="Edit", menu=EditMenu)
 
-MenuBar.add_cascade(label="Edit", menu=EditMenu)
+    Help = Menu(MenuBar, tearoff=0)
 
-Help = Menu(MenuBar, tearoff=0)
+    Help.add_command(label="About", command=About)
 
-Help.add_command(label="About", command=About)
+    MenuBar.add_cascade(label="Help", menu=Help)
 
-MenuBar.add_cascade(label="Help", menu=Help)
-
-root.config(menu = MenuBar)
-root.mainloop()
+    root.config(menu = MenuBar)
+    root.mainloop()
